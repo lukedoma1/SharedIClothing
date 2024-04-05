@@ -39,7 +39,7 @@ namespace Group8.Controllers
         // GET: Products/Create
         public ActionResult Create()
         {
-            ViewBag.productBrandID = new SelectList(db.Brand, "brandID", "brandDescription");
+            ViewBag.BrandList = new SelectList(db.Brand, "brandID", "brandID");
             return View();
         }
 
