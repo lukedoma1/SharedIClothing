@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "UserDashboard";
+}
+
+@{
+    Layout = "~/Views/Shared/SignedInLayout.cshtml";
+}
+
+<fieldset>
+    <legend>User Dashboard</legend>
+
+    @if (Session["UserName"] != null)
+    {
+        <text>Welcome @Session["UserName"].ToString()</text>
+    }
+</fieldset>
+
+@*<div class="jumbotron">
+        <h1>Computer Assignments System (CAS)</h1>
+        <p class="lead">CAS is an application to manage assigning computers to users.</p>
+
+
+    </div>*@
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("Brands", "Index", "Brands")</h2>
+        <p>Brand Details</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("ShoppingCart", "Index", "ShoppingCarts")</h2>
+        <p>Users Basic Information.</p>
+    </div>
+
+    <div class="col-md-4">
+        <h2>@Html.ActionLink("BuyItem", "Index", "BuyItem")</h2>
+        <p>Assignment Basic Information.</p>
+    </div>
+
+
+</div>
