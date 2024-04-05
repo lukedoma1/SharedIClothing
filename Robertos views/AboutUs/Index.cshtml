@@ -1,48 +1,42 @@
 ﻿@model IEnumerable<Group8_iCLOTHINGApp.Models.AboutUs>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "About Us";
 }
 
-<h2 class="text-center">About us</h2>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">About Us</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.companyAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.companyShippingPolicy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.companyReturnPolicy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.companyContactInfo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.companyBusinessDescription)
-        </th>
-    </tr>
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="text-center mb-4">
+                <h3 text-center >Who are we? </h3>
+                <p>@Html.DisplayFor(modelItem => item.companyBusinessDescription)</p>
+            </div>
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.companyAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.companyShippingPolicy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.companyReturnPolicy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.companyContactInfo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.companyBusinessDescription)
-        </td>
-    </tr>
-}
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <h3>Contact Information</h3>
+                <p>@Html.DisplayFor(modelItem => item.companyContactInfo)</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Address</h3>
+                <p>@Html.DisplayFor(modelItem => item.companyAddress)</p>
+            </div>
+        </div>
 
-</table>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <h3>Shipping Policy</h3>
+                <p>@Html.DisplayFor(modelItem => item.companyShippingPolicy)</p>
+            </div>
+            <div class="col-md-6">
+                <h3>Return Policy</h3>
+                <p>@Html.DisplayFor(modelItem => item.companyReturnPolicy)</p>
+            </div>
+        </div>
+    }
+</div>
+
