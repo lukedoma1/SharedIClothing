@@ -43,7 +43,7 @@
     <div class="col-md-6 text-center">
         @using (Html.BeginForm("Index", "Products", FormMethod.Post, new { @class = "form-horizontal" }))
         {
-            <button type="submit" class="btn btn-success">Add more Products</button>
+            <button type="submit" class="btn btn-outline-dark btn">Add more Products</button>
         }
     </div>
 </div>
@@ -89,7 +89,7 @@
         <div class="col-md-4  text-center">
             @using (Html.BeginForm("Checkout", "YourCheckoutController", FormMethod.Post, new { @class = "form-horizontal" }))
             {
-                <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+                <button type="submit" class="btn btn-outline-dark btn">Proceed to Checkout</button>
             }
         </div>
     </div>
