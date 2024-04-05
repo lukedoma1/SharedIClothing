@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Group8_iCLOTHINGApp.Models.Product>
+
+@{
+    ViewBag.Title = "Browse Products";
+}
+
+<h2>Browse iCLOTHING Products</h2>
+
+<div>
+    <h3>Departments</h3>
+    <p>Find what you need by department:</p>
+    <p>@Html.ActionLink("View Departments", "Index", "Departments")</p>
+</div>
+<div>
+    <h3>Categories</h3>
+    <p>Explore items by category:</p>
+    <p>@Html.ActionLink("View Categories", "Index", "Categories")</p>
+</div>
+<div>
+    <h3>Brands</h3>
+    <p>Shop by your favorite brands:</p>
+    <p>@Html.ActionLink("View Brands", "Index", "Brands")</p>
+</div>
+
+<div>
+    <h3>Products</h3>
+    <p>Check out our list of products:</p>
+     @*@Html.Partial("~/Views/Products/Index.cshtml", (IEnumerable<Group8_iCLOTHINGApp.Models.Product>)Model))*@
+    <p>@Html.ActionLink("Browse Products", "Index", "Products")</p>
+</div>

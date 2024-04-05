@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Contact iCLOTHING Inc.";
+}
+<main aria-labelledby="title">
+    <h2 id="title">@ViewBag.Title</h2>
+
+
+    <address>
+        1225 iCLOTHING St <br />
+        Columbia, Missouri 65201<br />
+        <abbr title="Phone"></abbr>
+        555-555-5555
+    </address>
+
+    <address>
+        <strong>Support:</strong> <a href="mailto:Support@iCLOTHING.com">Support@iCLOTHING.com</a><br />
+        <strong>Marketing:</strong> <a href="mailto:Marketing@iCLOTHING.com">Marketing@iCLOTHING.com</a>
+    </address>
+
+    <div>
+        <h3>Want to leave a feedback or comment? </h3>
+        <p>@Html.ActionLink("Leave a comment", "Index", "UserComments")</p>
+    </div>
+
+</main>
