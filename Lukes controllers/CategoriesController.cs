@@ -15,15 +15,9 @@ namespace Group8_iCLOTHINGApp.Controllers
         private Group8_iCLOTHINGDBEntities db = new Group8_iCLOTHINGDBEntities();
 
         // GET: Categories
-        public ActionResult Catalog()
-        {
-            return View();
-        }
-
-        // GET: Categories
         public ActionResult Index()
         {
-            var category = db.Category.Include(c => c.Category2);
+            var category = db.Category.Include(c => c.Category21).Include(c => c.Department);
             return View(category.ToList());
         }
 
@@ -45,7 +39,8 @@ namespace Group8_iCLOTHINGApp.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
-            ViewBag.subCategoryID = new SelectList(db.Category, "categoryID", "categoryName");
+            ViewBag.parentCategoryID = new SelectList(db.Category, "categoryID", "categoryName");
+            ViewBag.departmentID = new SelectList(db.Department, "departmentID", "departmentName");
             return View();
         }
 
@@ -54,7 +49,7 @@ namespace Group8_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "categoryID,categoryName,categoryDescription,subCategoryID")] Category category)
+        public ActionResult Create([Bind(Include = "categoryID,categoryName,categoryDescription,parentCategoryID,departmentID")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +58,8 @@ namespace Group8_iCLOTHINGApp.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.subCategoryID = new SelectList(db.Category, "categoryID", "categoryName", category.subCategoryID);
+            ViewBag.parentCategoryID = new SelectList(db.Category, "categoryID", "categoryName", category.parentCategoryID);
+            ViewBag.departmentID = new SelectList(db.Department, "departmentID", "departmentName", category.departmentID);
             return View(category);
         }
 
@@ -79,7 +75,8 @@ namespace Group8_iCLOTHINGApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.subCategoryID = new SelectList(db.Category, "categoryID", "categoryName", category.subCategoryID);
+            ViewBag.parentCategoryID = new SelectList(db.Category, "categoryID", "categoryName", category.parentCategoryID);
+            ViewBag.departmentID = new SelectList(db.Department, "departmentID", "departmentName", category.departmentID);
             return View(category);
         }
 
@@ -88,7 +85,7 @@ namespace Group8_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "categoryID,categoryName,categoryDescription,subCategoryID")] Category category)
+        public ActionResult Edit([Bind(Include = "categoryID,categoryName,categoryDescription,parentCategoryID,departmentID")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +93,8 @@ namespace Group8_iCLOTHINGApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.subCategoryID = new SelectList(db.Category, "categoryID", "categoryName", category.subCategoryID);
+            ViewBag.parentCategoryID = new SelectList(db.Category, "categoryID", "categoryName", category.parentCategoryID);
+            ViewBag.departmentID = new SelectList(db.Department, "departmentID", "departmentName", category.departmentID);
             return View(category);
         }
 

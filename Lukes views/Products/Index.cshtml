@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
 
 <h2>Index</h2>
 
@@ -29,29 +32,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.productName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.productQty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Brand.brandName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.productID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.productID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.productID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.productName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand.brandName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.productID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.productID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.productID })
+            </td>
+        </tr>
+    }
 
 </table>
