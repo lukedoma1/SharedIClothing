@@ -48,15 +48,29 @@ namespace Group8_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "commentNo,commentDate,commentDescription,customerID")] UserComments userComments)
+        public ActionResult Create([Bind(Include = "commentDescription")] UserComments userComments)
         {
             if (ModelState.IsValid)
             {
+                userComments.customerID = db.Customer.Select(c => c.customerID).FirstOrDefault();
+
+                if (userComments.customerID == 0)
+                {
+                    ModelState.AddModelError("", "You need to be logged in to leave feedback.");
+                    return View(userComments);
+                }
+
+                var maxCommentNo = db.UserComments.Any() ? db.UserComments.Max(uc => uc.commentNo) + 1 : 1;
+                userComments.commentNo = maxCommentNo;
+                userComments.commentDate = DateTime.Now;
+
                 db.UserComments.Add(userComments);
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
+ 
             ViewBag.customerID = new SelectList(db.Customer, "customerID", "customerName", userComments.customerID);
             return View(userComments);
         }
