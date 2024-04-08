@@ -108,17 +108,26 @@ namespace Group8_iCLOTHINGApp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "cartID,cartProductPrice,cartProductQty,cartProductID")] ShoppingCart shoppingCart)
+        public ActionResult Edit([Bind(Include = "cartID,cartProductQty,cartProductPrice,cartProductID")] ShoppingCart shoppingCart)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(shoppingCart).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var cartToUpdate = db.ShoppingCart.Find(shoppingCart.cartID);
+                if (cartToUpdate != null)
+                {
+                    cartToUpdate.cartProductQty = shoppingCart.cartProductQty;
+                    cartToUpdate.cartProductPrice = shoppingCart.cartProductPrice;
+                    cartToUpdate.cartProductID = shoppingCart.cartProductID;
+                    db.SaveChanges();
+
+                    ViewBag.SuccessMessage = "Your shopping cart has been successfully updated.";
+                    return RedirectToAction("Index");
+                }
             }
             ViewBag.cartProductID = new SelectList(db.Product, "productID", "productName", shoppingCart.cartProductID);
             return View(shoppingCart);
         }
+
 
         // GET: ShoppingCarts/Delete/5
         public ActionResult Delete(int? id)

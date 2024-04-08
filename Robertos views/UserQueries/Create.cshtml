@@ -18,7 +18,8 @@
             @Html.ValidationMessageFor(model => model.queryDescription, "", new { @class = "text-danger" })
         </div>
 
-        <button type="submit" class="btn btn-secondary">Submit</button>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <button type="submit" class="btn btn-outline-dark btn">Submit</button>
     }
 </div>
 
@@ -33,7 +34,7 @@
     <div class="col-md-6 text-center">
         @using (Html.BeginForm("Index", "Products", FormMethod.Post, new { @class = "form-horizontal" }))
         {
-            <button type="submit" class="btn btn-success">Back to browse products</button>
+            <button type="submit" class="btn btn-outline-dark btn">Back to browse products</button>
         }
     </div>
 </div>

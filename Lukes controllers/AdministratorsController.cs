@@ -14,7 +14,7 @@ namespace Group8_iCLOTHINGApp.Controllers
     {
         private Group8_iCLOTHINGDBEntities db = new Group8_iCLOTHINGDBEntities();
 
-        public ActionResult adminDashboard()
+        public ActionResult AdminDashboard()
         {
             return View();
         }
@@ -37,7 +37,7 @@ namespace Group8_iCLOTHINGApp.Controllers
                     {
                         Session["UserID"] = obj.adminID.ToString();
                         Session["UserName"] = obj.adminName.ToString();
-                        return RedirectToAction("adminDashboard");
+                        return RedirectToAction("WelcomeAdmin", "Home");
                     }
                 }
             }

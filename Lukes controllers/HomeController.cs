@@ -9,10 +9,23 @@ namespace Group8_iCLOTHINGApp.Controllers
 {
     public class HomeController : Controller
     {
+        private Group8_iCLOTHINGDBEntities db = new Group8_iCLOTHINGDBEntities();
 
-        public ActionResult AboutSignedIn()
+        public ActionResult WelcomeAdmin()
         {
             return View();
+        }
+        public ActionResult WelcomeUser()
+        {
+            return View();
+        }
+        public ActionResult AboutAdmin()
+        {
+            return View(db.AboutUs.ToList());
+        }
+        public ActionResult AboutSignedIn()
+        {
+            return View(db.AboutUs.ToList());
         }
         public ActionResult ContactSignedIn()
         {
@@ -41,7 +54,7 @@ namespace Group8_iCLOTHINGApp.Controllers
                     {
                         Session["UserID"] = obj.userID.ToString();
                         Session["UserName"] = obj.userAccountName.ToString();
-                        return RedirectToAction("UserDashBoard");
+                        return RedirectToAction("WelcomeUser");
                     }
                 }
             }
@@ -69,7 +82,7 @@ namespace Group8_iCLOTHINGApp.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return View(db.AboutUs.ToList());
         }
 
         public ActionResult Contact()

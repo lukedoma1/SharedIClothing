@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,27 +10,68 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+
+<style>
+    .bg-custom {
+        background-color: rgb(240, 249, 255);
+        /* background-color: #e8eaed;*/
+    }
+
+    .plain-link {
+        color: black !important; /* Set text color to black */
+    }
+
+    .iclothing {
+        background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .signupbg {
+        background-color: rgb(230, 246, 247);
+    }
+
+        .signupbg:hover {
+            background-color: rgb(184, 218, 219);
+        }
+
+    .rightbuttons{
+        margin-left: 15px !important;
+    }
+
+</style>
+
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-custom">
         <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("iClothing", "Index", "Home", new { area = "" }, new { @class = "iclothing navbar-brand plain-link" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link plain-link" })</li>
+                    @*<li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link plain-link" })</li>*@
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="navbar-nav navbar-right">
                     <li>
-                        @Html.ActionLink("Log In", "Login", "Home", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Log In", "Login", "Home", new { area = "" }, new { @class = "nav-link plain-link" })
                     </li>
                     <li>
                         <div class="btn-nav">
-                            @Html.ActionLink("Sign Up", "Index", "UserPasswords", new { area = "" }, new { @class = "btn btn-primary btn-small navbar-btn" })
+                            @*<div class="btn-nav mt-3">*@
+                                @Html.ActionLink("Sign Up", "Index", "UserPasswords", new { area = "" }, new { @class = "plain-link shadow signupbg rightbuttons nav-link rounded" })
+                          @*  </div>*@
+
                         </div>
                     </li>
                 </ul>
@@ -38,7 +82,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>Creators: Roberto Herrera, Luke Domalewski, and Brennan Scheel. &copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
 

@@ -4,30 +4,15 @@
     ViewBag.Title = "Index";
 }
 
-@{
-    Layout = "~/Views/Shared/SignedInLayout.cshtml";
-}
+<h2 class="text-center mb-lg-5">Your Shopping Cart</h2>
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Delete and Make New Shopping Cart", "DeleteAndMakeNew")
-</p>
-
-<p>
-    @Html.ActionLink("Create New Product in Cart", "Create")
-</p>
 <table class="table">
+
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.cartProductPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cartProductQty)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.productName)
-        </th>
+        <th>Product</th>
+        <th>Product Price</th>
+        <th>Quantity</th>
         <th></th>
     </tr>
 
@@ -35,13 +20,13 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Product.productName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.cartProductPrice)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.cartProductQty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Product.productName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.cartID }) |
@@ -52,3 +37,60 @@
     }
 
 </table>
+
+<div class="row justify-content-center md-4">
+    <div class="col-md-6 text-center">
+        @using (Html.BeginForm("Index", "BrowseProducts", FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            <button type="submit" class="btn btn-outline-dark btn">Add more Products</button>
+        }
+    </div>
+</div>
+
+@{
+    double subtotal = 0;
+    foreach (var item in Model)
+    {
+        subtotal += item.cartProductPrice * item.cartProductQty;
+    }
+    double taxRate = 0.08;
+    double tax = subtotal * taxRate;
+    double shippingAndHandling = 7.00;
+    double orderTotal = subtotal + tax + shippingAndHandling;
+}
+
+
+<div class="container mb-lg-5" style="margin-top: 60px;">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h3 class="text-center"> Order Summary</h3>
+            <table class="table">
+                <tr>
+                    <th>Subtotal:</th>
+                    <td>@subtotal.ToString("C")</td>
+                </tr>
+                <tr>
+                    <th>Tax:</th>
+                    <td>@tax.ToString("C")</td>
+                </tr>
+                <tr>
+                    <th>Shipping and Handling:</th>
+                    <td>@shippingAndHandling.ToString("C")</td>
+                </tr>
+                <tr>
+                    <th>Order Total:</th>
+                    <td>@orderTotal.ToString("C")</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-4  text-center">
+            @using (Html.BeginForm("Checkout", "YourCheckoutController", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <button type="submit" class="btn btn-outline-dark btn">Proceed to Checkout</button>
+            }
+        </div>
+    </div>
+</div>
+

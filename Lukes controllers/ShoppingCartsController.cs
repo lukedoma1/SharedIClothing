@@ -14,6 +14,33 @@ namespace Group8_iCLOTHINGApp.Controllers
     {
         private Group8_iCLOTHINGDBEntities db = new Group8_iCLOTHINGDBEntities();
 
+        //imported from roberto's controllers
+        public ActionResult AddToCart(int cartID, int cartProductID, int cartProductQty, double cartProductPrice)
+        {
+
+            var existingItem = db.ShoppingCart.FirstOrDefault(s => s.cartProductID == cartProductID);
+
+            if (existingItem != null)
+            {
+                ViewBag.ErrorMessage = "Item is already in the shopping cart.";
+                return RedirectToAction("Index", "BrowseProducts");
+            }
+
+            ShoppingCart shoppingCart = new ShoppingCart
+
+            {
+                cartID = cartID,
+                cartProductID = cartProductID,
+                cartProductQty = cartProductQty,
+                cartProductPrice = cartProductPrice,
+            };
+
+            db.ShoppingCart.Add(shoppingCart);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         // GET: ShoppingCarts
         public ActionResult Index()
         {
