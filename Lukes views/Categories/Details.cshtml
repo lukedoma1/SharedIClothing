@@ -4,6 +4,10 @@
     ViewBag.Title = "Details";
 }
 
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
 <h2>Details</h2>
 
 <div>
@@ -27,11 +31,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Category2.categoryName)
+            @Html.DisplayNameFor(model => model.Category21.categoryName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Category2.categoryName)
+            @Html.DisplayFor(model => model.Category21.categoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department.departmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Department.departmentName)
         </dd>
 
     </dl>

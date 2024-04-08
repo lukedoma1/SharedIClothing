@@ -4,6 +4,28 @@
     ViewBag.Title = "Login";
 }
 
+<style>
+    .custom-button {
+        background-color: rgb(230, 246, 247);
+        border: none;
+        padding: 8px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition-duration: 0.4s;
+        margin-top: 20px;
+    }
+
+    .custom-button:hover {
+        background-color: rgb(184, 218, 219);
+    }
+</style>
+
+
 @using (Html.BeginForm("Login", "Home", FormMethod.Post))
 {
     <fieldset>
@@ -11,7 +33,7 @@
 
         <p> * Loging in for Administrator?  @Html.ActionLink("Click Here", "LoginAdmin", "Administrators") * </p>
 
-       
+
 
         <hr />
         @Html.AntiForgeryToken()
@@ -24,26 +46,7 @@
             </p>
         }
 
-        @*<table>
-            <tr>
-                <td>@Html.LabelFor(a => a.userAccountName)</td>
-                <td>@Html.TextBoxFor(a => a.userAccountName)</td>
-                <td>@Html.ValidationMessageFor(a => a.userAccountName)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(a => a.userEncryptedPassword)</td>
-                <td>@Html.PasswordFor(a => a.userEncryptedPassword)</td>
-                <td>@Html.ValidationMessageFor(a => a.userEncryptedPassword)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Login" /></td>
-                <td></td>
-            </tr>
-        </table>*@
-
         <div class="form-group">
-            @*@Html.LabelFor(model => model.userAccountName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <p>Username</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.userAccountName, new { htmlAttributes = new { @class = "form-control" } })
@@ -52,7 +55,6 @@
         </div>
 
         <div class="form-group">
-            @* @Html.LabelFor(model => model.userEncryptedPassword, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <p>Password</p>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.userEncryptedPassword, new { htmlAttributes = new { @class = "form-control" } })
@@ -61,10 +63,11 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Login" class="btn btn-default" />
+                    <input type="submit" value="Login" class="custom-button" />
                 </div>
             </div>
         </div>
-
     </fieldset>
 }
+
+

@@ -4,6 +4,10 @@
     ViewBag.Title = "Index";
 }
 
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
 <h2>Index</h2>
 
 <p>
@@ -12,34 +16,41 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.categoryName)
+            @Html.DisplayName("Category")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.categoryDescription)
+            @Html.DisplayName("Description")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category2.categoryName)
+            @Html.DisplayName("Parent Category")
+        </th>
+        <th>
+            @Html.DisplayName("Department")
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.categoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.categoryDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category2.categoryName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.categoryID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.categoryID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.categoryID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoryDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category21.categoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.departmentName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.categoryID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.categoryID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.categoryID })
+            </td>
+        </tr>
+    }
 
 </table>

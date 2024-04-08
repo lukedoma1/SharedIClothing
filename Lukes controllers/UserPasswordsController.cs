@@ -14,22 +14,28 @@ namespace Group8_iCLOTHINGApp.Controllers
     {
         private Group8_iCLOTHINGDBEntities db = new Group8_iCLOTHINGDBEntities();
 
-        // GET: UserPasswords/SignIn
+        /*// GET: UserPasswords/SignIn
         public ActionResult CreateAccount()
         {
             ViewBag.userID = new SelectList(db.Customer, "customerID", "customerName");
             return View();
-        }
+        }*/
 
         // POST: UserPasswords/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateAccount([Bind(Include = "userID,userAccountName,userEncryptedPassword,passwordExpiryTime,userAccountExpiryDate")] UserPassword userPassword)
+        public ActionResult Index([Bind(Include = "userID,userAccountName,userEncryptedPassword,passwordExpiryTime,userAccountExpiryDate")] UserPassword userPassword)
         {
             if (ModelState.IsValid)
             {
+                if (db.UserPassword.Any(u => u.userAccountName == userPassword.userAccountName))
+                {
+                    ModelState.AddModelError("userAccountName", "Username already exists. Please choose a different username.");
+                    ViewBag.userID = new SelectList(db.Customer, "customerID", "customerName", userPassword.userID);
+                    return View(userPassword);
+                }
                 //increment ID
                 int maxUserID = db.UserPassword.Max(u => (int?)u.userID) ?? 0; // Handle potential null values
                 userPassword.userID = maxUserID + 1;
@@ -41,28 +47,6 @@ namespace Group8_iCLOTHINGApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Login", "Home");
             }
-
-           /* foreach (var modelState in ModelState.Values)
-            {
-                foreach (var error in modelState.Errors)
-                {
-                    if (!string.IsNullOrEmpty(error.ErrorMessage))
-                    {
-                        // Log or output error.ErrorMessage
-                        Console.WriteLine(error.ErrorMessage);
-                    }
-
-                    if (error.Exception != null)
-                    {
-                        // Log or output error.Exception.Message and error.Exception.StackTrace
-                        Console.WriteLine($"Exception: {error.Exception.Message}");
-                        Console.WriteLine($"Stack Trace: {error.Exception.StackTrace}");
-                    }
-                }
-            }*/
-
-
-
             ViewBag.userID = new SelectList(db.Customer, "customerID", "customerName", userPassword.userID);
             return View(userPassword);
         }
