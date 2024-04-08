@@ -14,39 +14,6 @@ namespace Group8_iCLOTHINGApp.Controllers
     {
         private Group8_iCLOTHINGDBEntities db = new Group8_iCLOTHINGDBEntities();
 
-        /*public ActionResult Index(string searchTerm, int? BrandId, int? DepartmentId, int? CategoryId)
-        {
-            // Populate dropdown lists
-            ViewBag.BrandId = new SelectList(db.Brand.OrderBy(b => b.brandName), "brandID", "brandName");
-            ViewBag.DepartmentId = new SelectList(db.Department.OrderBy(d => d.departmentName), "DepartmentId", "Name");
-            ViewBag.CategoryId = new SelectList(db.Category.OrderBy(c => c.categoryName), "CategoryId", "Name");
-
-            var products = db.Product.Include(p => p.Brand).AsQueryable(); // Assume similar includes for Department and Category
-
-            if (!String.IsNullOrEmpty(searchTerm))
-            {
-                products = products.Where(p => p.productName.Contains(searchTerm));
-            }
-
-            if (BrandId.HasValue)
-            {
-                products = products.Where(p => p.productBrandID == BrandId);
-            }
-
-    
-            if (DepartmentId.HasValue)
-            {
-                products = products.Where(p => p.productID == DepartmentId);
-            }
-
-            if (CategoryId.HasValue)
-            {
-                products = products.Where(p => p.productID == CategoryId);
-            }
-
-            return View(products.ToList());
-        }*/
-
 
         // GET: Products
         public ActionResult Index(string searchTerm, int? BrandId)

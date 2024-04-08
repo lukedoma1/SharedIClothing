@@ -30,9 +30,8 @@
                 @Html.DisplayFor(modelItem => item.cartProductQty)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.cartID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.cartID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.cartID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.cartID }, new { @class = "btn btn-outline-dark btn-sm" }) 
+                @Html.ActionLink("Delete", "Delete", new { id = item.cartID  }, new { @class = "btn btn-outline-dark btn-sm" })
             </td>
         </tr>
     }

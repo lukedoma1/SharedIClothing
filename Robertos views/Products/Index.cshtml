@@ -52,12 +52,12 @@
             <td>@Html.DisplayFor(modelItem => item.Brand.brandName)</td>
             <td>
                 @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCarts", new
-                {
+           {
                cartID = item.productID,
                cartProductID = item.productID,
                cartProductQty = 1,
                cartProductPrice = item.productPrice
-                }, null)
+           }, new { @class = "btn btn-outline-dark btn-sm" })
             </td>
         </tr>
     }
